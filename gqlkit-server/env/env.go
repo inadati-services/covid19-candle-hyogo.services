@@ -3,11 +3,9 @@ package env
 import (
 	"os"
 	"strings"
-
-	"github.com/joho/godotenv"
 )
 
-var LoadErr = godotenv.Load("../.env")
+// var LoadErr = godotenv.Load("../.env")
 
 var (
 	// GQL_SERVER_SECRETKEY string = os.Getenv("GQL_SERVER_SECRETKEY")

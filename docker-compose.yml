@@ -26,16 +26,16 @@ services:
         depends_on:
         - postgres
 
-    # gqlkit-server:
-    #     build:
-    #         context: ./gqlkit-server
-    #     env_file:
-    #     - .env
-    #     ports:
-    #     - 8080:8080
-    #     depends_on:
-    #     - postgres
-    #     links:
-    #     - postgres:postgres
-    #     restart: always
+    gqlkit-server:
+        build:
+            context: ./gqlkit-server
+        env_file:
+        - .env
+        ports:
+        - 8080:8080
+        depends_on:
+        - postgres
+        links:
+        - postgres:postgres
+        restart: always
 
