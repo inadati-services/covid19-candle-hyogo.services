@@ -1,0 +1,6 @@
+requests
+openpyxl
+beautifulsoup4
+pdfminer.six
+psycopg2
+datetime

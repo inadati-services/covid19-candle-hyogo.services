@@ -1,20 +1,17 @@
 datasource db {
-    provider = "postgresql"
-    url      = "postgresql://postgres:postgres@localhost:5432/postgres?schema=public"
+  provider = "postgresql"
+  url      = "postgresql://postgres:postgres@localhost:5432/postgres?schema=public"
 }
 
-model todos {
-    id   String @default(cuid()) @id
-    text String
-    done Boolean
-    user_id String
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
-}
-
-model users {
-    id   String @default(cuid()) @id
-    name String
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+model patient_infos {
+  id                 String   @default(cuid()) @id
+  date               DateTime
+  pcr_total          Int
+  positive_up_total  Int
+  positive           Int
+  positive_yesterday Int
+  not_severe         Int
+  severe             Int
+  death_total        Int
+  discharge_total    Int
 }

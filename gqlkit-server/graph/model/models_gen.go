@@ -2,19 +2,15 @@
 
 package model
 
-type NewTodo struct {
-	Text   string `json:"text"`
-	UserID string `json:"userId"`
-}
-
-type Todo struct {
-	ID   string `json:"id"`
-	Text string `json:"text"`
-	Done bool   `json:"done"`
-	User *User  `json:"user"`
-}
-
-type User struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+type PatientInfo struct {
+	ID                string `json:"id"`
+	Date              string `json:"date"`
+	PcrTotal          int    `json:"pcr_total"`
+	PositiveUpTotal   int    `json:"positive_up_total"`
+	Positive          int    `json:"positive"`
+	PositiveYesterday int    `json:"positive_yesterday"`
+	NotSevere         int    `json:"not_severe"`
+	Severe            int    `json:"severe"`
+	DeathTotal        int    `json:"death_total"`
+	DischargeTotal    int    `json:"discharge_total"`
 }

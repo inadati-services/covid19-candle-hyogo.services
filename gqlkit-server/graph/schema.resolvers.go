@@ -6,23 +6,26 @@ package graph
 import (
 	"context"
 	"fmt"
+	"gqlkit/env"
 	"gqlkit/graph/generated"
 	"gqlkit/graph/model"
+
+	"github.com/jinzhu/gorm"
+	_ "github.com/lib/pq"
 )
 
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
-}
+func (r *queryResolver) ReadPatientInfos(ctx context.Context) ([]*model.PatientInfo, error) {
+	db, err := gorm.Open("postgres", env.DB_CONNECT)
+	defer db.Close()
+	if err != nil {
+		return nil, fmt.Errorf(err.Error())
+	}
 
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
+	db.Order("date desc").Find(&r.patient_infos)
+	return r.patient_infos, nil
 }
-
-// Mutation returns generated.MutationResolver implementation.
-func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 
 // Query returns generated.QueryResolver implementation.
 func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 
-type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
