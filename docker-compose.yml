@@ -1,0 +1,41 @@
+version: "3"
+services:
+    
+    postgres:
+        image: postgres:alpine
+        volumes:
+        - ./postgres/data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=ja_JP.UTF-8"
+        tty: true
+        restart: always
+        ports:
+        - 5432:5432
+
+    pgweb:
+        restart: always
+        image: sosedoff/pgweb
+        ports:
+        - 8081:8081
+        links:
+        - postgres:postgres  # my database container is called postgres, not db
+        environment:
+        - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable
+        depends_on:
+        - postgres
+
+    # gqlkit-server:
+    #     build:
+    #         context: ./gqlkit-server
+    #     env_file:
+    #     - .env
+    #     ports:
+    #     - 8080:8080
+    #     depends_on:
+    #     - postgres
+    #     links:
+    #     - postgres:postgres
+    #     restart: always
+
