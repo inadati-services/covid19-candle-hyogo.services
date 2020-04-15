@@ -39,3 +39,14 @@ services:
         - postgres:postgres
         restart: always
 
+    scraping-bot:
+        build:
+            context: ./scraping-bot
+        env_file:
+            - .env
+        depends_on:
+            - postgres
+        links:
+            - postgres:postgres
+        restart: always
+
