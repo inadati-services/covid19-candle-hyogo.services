@@ -21,7 +21,7 @@ func (r *queryResolver) ReadPatientInfos(ctx context.Context) ([]*model.PatientI
 		return nil, fmt.Errorf(err.Error())
 	}
 
-	db.Order("date desc").Find(&r.patient_infos)
+	db.Order("date").Find(&r.patient_infos)
 	return r.patient_infos, nil
 }
 

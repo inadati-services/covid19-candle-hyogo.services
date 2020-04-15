@@ -1,0 +1,31 @@
+{
+  "name": "covid19-candle-hyogo",
+  "version": "1.0.0",
+  "description": "This is a covid19 infection status confirmation app for Hyogo Prefecture.",
+  "author": "Inadati",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@gqlkit/client": "^1.2.0",
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "@types/ws": "^7.2.4",
+    "cross-env": "^5.2.0",
+    "echarts": "^4.7.0",
+    "echarts-gl": "^1.1.1",
+    "echarts-stat": "^1.1.1",
+    "express": "^4.16.4",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9",
+    "@nuxt/typescript-build": "^0.6.0",
+    "@nuxtjs/vuetify": "^1.0.0"
+  }
+}
