@@ -1,12 +1,16 @@
 const colors = require('vuetify/es5/util/colors').default
-require('dotenv').config({
-    path: '../.env'
-})
+// require('dotenv').config({
+//     path: '../.env',
+// })
 
 module.exports = {
     mode: 'universal',
     env: {
         GQL_SERVER_URL: process.env.GQL_SERVER_URL,
+    },
+    server: {
+        port: 3000, // デフォルト: 3000
+        host: '0.0.0.0', // デフォルト: localhost
     },
     /*
      ** Headers of the page

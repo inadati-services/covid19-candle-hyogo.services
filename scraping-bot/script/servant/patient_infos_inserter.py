@@ -22,13 +22,13 @@ def __convert_to_iso(date):
 
 def serve(db):
     # 既にエクセルファイルがある場合一旦、既存のファイルを破棄
-    if os.path.isfile("./download/" + env.DL_FILE_NAME):
-        os.remove("./download/" + env.DL_FILE_NAME)
+    if os.path.isfile(env.DL_FILE_NAME):
+        os.remove(env.DL_FILE_NAME)
 
-    file_downloader.serve(env.DL_FILE, "./download/" + env.DL_FILE_NAME)
+    file_downloader.serve(env.DL_FILE, env.DL_FILE_NAME)
 
     # エクセルファイルを開いてシートを読みこむ
-    wb = px.load_workbook("./download/" + env.DL_FILE_NAME, data_only=True)
+    wb = px.load_workbook(env.DL_FILE_NAME, data_only=True)
     sheet = wb["yousei"]
 
     for irow in range(2, sheet.max_row+1):

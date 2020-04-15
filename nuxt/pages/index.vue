@@ -49,6 +49,7 @@ export default {
         CandleChart,
     },
     async asyncData({ app: { $rapi } }) {
+
         const [patientInfos] = await Promise.all([
             $rapi.Query.readPatientInfos(),
         ])
