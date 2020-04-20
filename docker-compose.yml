@@ -13,17 +13,17 @@ services:
         # ports:
         #     - 5432:5432
 
-    # pgweb:
-    #     restart: always
-    #     image: sosedoff/pgweb
-    #     ports:
-    #         - 8081:8081
-    #     links:
-    #         - postgres:postgres # my database container is called postgres, not db
-    #     environment:
-    #         - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable
-    #     depends_on:
-    #         - postgres
+    pgweb:
+        restart: always
+        image: sosedoff/pgweb
+        ports:
+            - 8081:8081
+        links:
+            - postgres:postgres # my database container is called postgres, not db
+        environment:
+            - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable
+        depends_on:
+            - postgres
 
     scraping-bot:
         build:
@@ -49,16 +49,16 @@ services:
             - postgres:postgres
         restart: always
 
-    nuxt:
-        build:
-            context: ./nuxt
-        env_file:
-            - .env
-        depends_on:
-            - postgres
-            - gqlkit-server
-        restart: always
-        stdin_open: true
-        tty: true
-        ports:
-            - 3000:3000
+    # nuxt:
+    #     build:
+    #         context: ./nuxt
+    #     env_file:
+    #         - .env
+    #     depends_on:
+    #         - postgres
+    #         - gqlkit-server
+    #     restart: always
+    #     stdin_open: true
+    #     tty: true
+    #     ports:
+    #         - 3000:3000
