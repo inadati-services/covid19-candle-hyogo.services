@@ -1,1 +1,2 @@
 /.gitignore merge=ours
+/docker-compose.yml merge=ours
