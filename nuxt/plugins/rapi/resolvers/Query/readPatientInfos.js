@@ -14,10 +14,8 @@ export const demand = gql`
 
 // resolver
 export default async variables => {
-    if(!cache.Find("patientInfos")){
-        const {readPatientInfos: patientInfos} = await client.req(demand)
-        cache.Regist('patientInfos', patientInfos)
-    }
-    
+    const { readPatientInfos: patientInfos } = await client.req(demand)
+    cache.Regist('patientInfos', patientInfos)
+
     return cache.Find("patientInfos")
 }
