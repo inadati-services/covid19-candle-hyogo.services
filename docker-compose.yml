@@ -49,16 +49,3 @@ services:
             - postgres:postgres
         restart: always
 
-    # nuxt:
-    #     build:
-    #         context: ./nuxt
-    #     env_file:
-    #         - .env
-    #     depends_on:
-    #         - postgres
-    #         - gqlkit-server
-    #     restart: always
-    #     stdin_open: true
-    #     tty: true
-    #     ports:
-    #         - 3000:3000
