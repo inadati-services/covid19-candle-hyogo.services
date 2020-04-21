@@ -7,10 +7,13 @@ type PatientInfo struct {
 	Date              string `json:"date"`
 	PcrTotal          int    `json:"pcr_total"`
 	PositiveUpTotal   int    `json:"positive_up_total"`
+	PositiveUpDaily   int    `json:"positive_up_daily"`
 	Positive          int    `json:"positive"`
 	PositiveYesterday int    `json:"positive_yesterday"`
 	NotSevere         int    `json:"not_severe"`
 	Severe            int    `json:"severe"`
 	DeathTotal        int    `json:"death_total"`
+	DeathDaily        int    `json:"death_daily"`
 	DischargeTotal    int    `json:"discharge_total"`
+	DischargeDaily    int    `json:"discharge_daily"`
 }

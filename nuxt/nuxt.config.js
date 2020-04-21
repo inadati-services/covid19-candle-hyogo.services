@@ -1,7 +1,7 @@
 const colors = require('vuetify/es5/util/colors').default
-// require('dotenv').config({
-//     path: '../.env',
-// })
+require('dotenv').config({
+    path: '../.env',
+})
 
 module.exports = {
     mode: 'universal',

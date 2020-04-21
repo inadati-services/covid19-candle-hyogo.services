@@ -7,10 +7,13 @@ type PatientInfo {
     date: String!
     pcr_total: Int!
     positive_up_total: Int!
+    positive_up_daily: Int!
     positive: Int!
     positive_yesterday: Int!
     not_severe: Int!
     severe: Int!
     death_total: Int!
+    death_daily: Int!
     discharge_total: Int!
+    discharge_daily: Int!
 }

@@ -36,6 +36,16 @@
                 </v-list-item>
 
                 <v-list-item
+                    href="https://www.covid19-yamanaka.com/"
+                    target="_blank"
+                    two-line
+                >
+                    <v-list-item-content>
+                        <v-list-item-title>山中伸弥による新型コロナウイルス情報発信</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item
                     href="https://web.pref.hyogo.lg.jp/kk03/200129.html"
                     target="_blank"
                     two-line

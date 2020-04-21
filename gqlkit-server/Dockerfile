@@ -7,6 +7,9 @@ ENV TZ=Asia/Tokyo
 
 RUN go get -u github.com/hako/branca && \
     go get -u github.com/satori/go.uuid && \
+    go get -u github.com/gorilla/websocket && \
+    go get -u github.com/99designs/gqlgen/graphql/handler/extension && \
+    go get -u github.com/99designs/gqlgen/graphql/handler/transport && \
     go get -u github.com/lib/pq && \
     go get -u github.com/jinzhu/gorm && \
     go get -u github.com/99designs/gqlgen/handler && \

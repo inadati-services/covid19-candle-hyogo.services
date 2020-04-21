@@ -24,8 +24,8 @@ func main() {
 	r.Use(middleware.SetHeader("Content-Type", "application/json"))
 	r.Use(cors.Handler)
 
-	// r.Handle("/", handler.Playground())
-	r.Handle("/", handler.Graphql())
+	r.Handle("/", handler.Playground())
+	r.Handle("/query", handler.Graphql())
 
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", env.GQL_SERVER_PORT)
 	log.Fatal(http.ListenAndServe(":"+env.GQL_SERVER_PORT, r))

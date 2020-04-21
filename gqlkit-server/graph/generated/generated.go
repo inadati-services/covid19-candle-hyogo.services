@@ -44,12 +44,15 @@ type DirectiveRoot struct {
 type ComplexityRoot struct {
 	PatientInfo struct {
 		Date              func(childComplexity int) int
+		DeathDaily        func(childComplexity int) int
 		DeathTotal        func(childComplexity int) int
+		DischargeDaily    func(childComplexity int) int
 		DischargeTotal    func(childComplexity int) int
 		ID                func(childComplexity int) int
 		NotSevere         func(childComplexity int) int
 		PcrTotal          func(childComplexity int) int
 		Positive          func(childComplexity int) int
+		PositiveUpDaily   func(childComplexity int) int
 		PositiveUpTotal   func(childComplexity int) int
 		PositiveYesterday func(childComplexity int) int
 		Severe            func(childComplexity int) int
@@ -86,12 +89,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.PatientInfo.Date(childComplexity), true
 
+	case "PatientInfo.death_daily":
+		if e.complexity.PatientInfo.DeathDaily == nil {
+			break
+		}
+
+		return e.complexity.PatientInfo.DeathDaily(childComplexity), true
+
 	case "PatientInfo.death_total":
 		if e.complexity.PatientInfo.DeathTotal == nil {
 			break
 		}
 
 		return e.complexity.PatientInfo.DeathTotal(childComplexity), true
+
+	case "PatientInfo.discharge_daily":
+		if e.complexity.PatientInfo.DischargeDaily == nil {
+			break
+		}
+
+		return e.complexity.PatientInfo.DischargeDaily(childComplexity), true
 
 	case "PatientInfo.discharge_total":
 		if e.complexity.PatientInfo.DischargeTotal == nil {
@@ -127,6 +144,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.PatientInfo.Positive(childComplexity), true
+
+	case "PatientInfo.positive_up_daily":
+		if e.complexity.PatientInfo.PositiveUpDaily == nil {
+			break
+		}
+
+		return e.complexity.PatientInfo.PositiveUpDaily(childComplexity), true
 
 	case "PatientInfo.positive_up_total":
 		if e.complexity.PatientInfo.PositiveUpTotal == nil {
@@ -215,12 +239,15 @@ type PatientInfo {
     date: String!
     pcr_total: Int!
     positive_up_total: Int!
+    positive_up_daily: Int!
     positive: Int!
     positive_yesterday: Int!
     not_severe: Int!
     severe: Int!
     death_total: Int!
+    death_daily: Int!
     discharge_total: Int!
+    discharge_daily: Int!
 }
 `, BuiltIn: false},
 }
@@ -416,6 +443,40 @@ func (ec *executionContext) _PatientInfo_positive_up_total(ctx context.Context, 
 	return ec.marshalNInt2int(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _PatientInfo_positive_up_daily(ctx context.Context, field graphql.CollectedField, obj *model.PatientInfo) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:   "PatientInfo",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.PositiveUpDaily, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(int)
+	fc.Result = res
+	return ec.marshalNInt2int(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _PatientInfo_positive(ctx context.Context, field graphql.CollectedField, obj *model.PatientInfo) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
@@ -586,6 +647,40 @@ func (ec *executionContext) _PatientInfo_death_total(ctx context.Context, field 
 	return ec.marshalNInt2int(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _PatientInfo_death_daily(ctx context.Context, field graphql.CollectedField, obj *model.PatientInfo) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:   "PatientInfo",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DeathDaily, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(int)
+	fc.Result = res
+	return ec.marshalNInt2int(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _PatientInfo_discharge_total(ctx context.Context, field graphql.CollectedField, obj *model.PatientInfo) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
@@ -604,6 +699,40 @@ func (ec *executionContext) _PatientInfo_discharge_total(ctx context.Context, fi
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
 		return obj.DischargeTotal, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(int)
+	fc.Result = res
+	return ec.marshalNInt2int(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _PatientInfo_discharge_daily(ctx context.Context, field graphql.CollectedField, obj *model.PatientInfo) (ret graphql.Marshaler) {
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	fc := &graphql.FieldContext{
+		Object:   "PatientInfo",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+
+	ctx = graphql.WithFieldContext(ctx, fc)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.DischargeDaily, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -1817,6 +1946,11 @@ func (ec *executionContext) _PatientInfo(ctx context.Context, sel ast.SelectionS
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
+		case "positive_up_daily":
+			out.Values[i] = ec._PatientInfo_positive_up_daily(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "positive":
 			out.Values[i] = ec._PatientInfo_positive(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
@@ -1842,8 +1976,18 @@ func (ec *executionContext) _PatientInfo(ctx context.Context, sel ast.SelectionS
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
+		case "death_daily":
+			out.Values[i] = ec._PatientInfo_death_daily(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "discharge_total":
 			out.Values[i] = ec._PatientInfo_discharge_total(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		case "discharge_daily":
+			out.Values[i] = ec._PatientInfo_discharge_daily(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
