@@ -49,7 +49,16 @@ module.exports = {
     /*
      ** Nuxt.js dev-modules
      */
-    buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
+    buildModules: [
+        '@nuxt/typescript-build',
+        '@nuxtjs/vuetify',
+        [
+            '@nuxtjs/google-analytics',
+            {
+                id: 'UA-164225381-1',
+            },
+        ],
+    ],
     /*
      ** Nuxt.js modules
      */
