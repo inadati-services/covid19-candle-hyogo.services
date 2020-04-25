@@ -33,8 +33,8 @@ export default {
 
                     return `
                 日時: ${date}<br>
-                県内陽性者数: ${positive}<br>
-                陽性前日比: ${compare_yesterday}<br>
+                県内患者数: ${positive}<br>
+                患者数前日比: ${compare_yesterday}<br>
                 &nbsp;&nbsp;新規陽性: ${positive_up_daily}<br>
                 &nbsp;&nbsp;新規非陽性: ${death_daily + discharge_daily} (うち退院: ${discharge_daily}、死者: ${death_daily})<br>
                 5日間平均線: ${ma5}<br>
@@ -47,7 +47,7 @@ export default {
                 },
             },
             legend: {
-                data: ['県内陽性者数', '5日間平均線', '10日間平均線'],
+                data: ['県内患者数', '5日間平均線', '10日間平均線'],
                 top: 0,
             },
             grid: {
@@ -88,7 +88,7 @@ export default {
             ],
             series: [
                 {
-                    name: '県内陽性者数',
+                    name: '県内患者数',
                     type: 'candlestick',
                     data: chartData,
                     itemStyle: {

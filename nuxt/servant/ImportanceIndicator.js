@@ -12,12 +12,12 @@ export default {
         const chartDataLatest = chartData[chartData.length - 1][1]
 
 
-        if (chartDataLatest > ma5Latest && chartDataLatest > ma10Latest){
-            return { alert: 'error', message: '現在、感染は拡大に向かっています。' }
-        } else if (chartDataLatest < ma5Latest && chartDataLatest < ma10Latest) {
-            return { alert: 'success', message: '現在、感染は終息に向かっています。' }
+        if (chartDataLatest > ma5Latest && chartDataLatest > ma10Latest && ma5Latest > ma10Latest){
+            return { alert: 'error', message: '現在、感染は拡大傾向です。' }
+        } else if (chartDataLatest < ma5Latest && chartDataLatest < ma10Latest && ma5Latest < ma10Latest) {
+            return { alert: 'success', message: '現在、感染は終息傾向です。' }
         } else {
-            return { alert: 'warning', message: '現在、感染拡大は比較的緩やかな状態です。' }
+            return { alert: 'warning', message: '現在、感染は鈍化傾向です。' }
         }
     }
 }
