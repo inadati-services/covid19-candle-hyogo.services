@@ -22,7 +22,7 @@
     "echarts": "^4.7.0",
     "echarts-gl": "^1.1.1",
     "echarts-stat": "^1.1.1",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
